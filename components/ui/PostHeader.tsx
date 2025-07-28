@@ -1,9 +1,12 @@
 import { Colors } from "@/constants/Colors";
+import { Post } from "@/types";
 import { Entypo } from "@expo/vector-icons";
 import { useColorScheme } from "react-native";
 import { Button, Image, Text, View } from "tamagui";
 
-export function PostHeader() {
+type PostHeaderProps = Pick<Post, "avatar" | "name" | "location">;
+
+export function PostHeader({ avatar, name, location }: PostHeaderProps) {
   const colorScheme = useColorScheme();
   return (
     <View
@@ -14,18 +17,13 @@ export function PostHeader() {
       px="$2"
       alignItems="center"
     >
-      <Image
-        source={{ uri: "https://avatars.githubusercontent.com/u/12678606?v=4" }}
-        w="35"
-        h="35"
-        borderRadius="$10"
-      />
+      <Image source={{ uri: avatar }} w="35" h="35" borderRadius="$10" />
       <View flex={1} px="$2" justifyContent="center">
         <Text color="$textPrimary" fontWeight="700" fontSize="$3">
-          Israel Alfaro
+          {name}
         </Text>
         <Text fontSize="$3" color="$textPrimary" fontWeight="500">
-          La Libertad, El Salvador
+          {location}
         </Text>
       </View>
       <Button bg="$background" borderRadius="$10">
