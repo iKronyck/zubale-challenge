@@ -1,7 +1,10 @@
+import { Post } from "@/types";
 import { formatRelativeTime } from "@/utils";
 import { Image, Text, View } from "tamagui";
 
-export function PostFooter() {
+type PostFooterProps = Pick<Post, "description" | "createdAt" | "name">;
+
+export function PostFooter({ description, createdAt, name }: PostFooterProps) {
   return (
     <View flexDirection="column" gap={"$2"}>
       <View flexDirection="row" gap={"$2"}>
@@ -18,14 +21,11 @@ export function PostFooter() {
         </Text>
       </View>
       <Text color="$textPrimary" fontSize={16}>
-        <Text fontWeight="700">{`Israel `}</Text>
-        <Text pl="$2">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
-          quos.
-        </Text>
+        <Text fontWeight="700">{`${name} `}</Text>
+        <Text pl="$2">{description}</Text>
       </Text>
       <Text color="$textSecondary" fontSize={14}>
-        {formatRelativeTime(new Date().toISOString())}
+        {formatRelativeTime(createdAt)}
       </Text>
     </View>
   );
