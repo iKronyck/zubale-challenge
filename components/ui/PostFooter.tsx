@@ -1,3 +1,4 @@
+import { formatRelativeTime } from "@/utils";
 import { Image, Text, View } from "tamagui";
 
 export function PostFooter() {
@@ -22,6 +23,9 @@ export function PostFooter() {
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
           quos.
         </Text>
+      </Text>
+      <Text color="$textSecondary" fontSize={14}>
+        {formatRelativeTime(new Date().toISOString())}
       </Text>
     </View>
   );
