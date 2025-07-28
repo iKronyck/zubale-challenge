@@ -5,7 +5,8 @@ import "react-native-reanimated";
 
 import { useColorScheme } from "@/hooks/useColorScheme";
 import tamaguiConfig from "@/tamagui.config";
-import { TamaguiProvider, Text } from "tamagui";
+import { Stack } from "expo-router";
+import { TamaguiProvider } from "tamagui";
 
 export default function RootLayout() {
   const queryClient = new QueryClient();
@@ -21,7 +22,9 @@ export default function RootLayout() {
   return (
     <TamaguiProvider config={tamaguiConfig} defaultTheme={colorScheme}>
       <QueryClientProvider client={queryClient}>
-        <Text>Hello</Text>
+        <Stack>
+          <Stack.Screen name="index" options={{ headerShown: true }} />
+        </Stack>
         <StatusBar style="auto" />
       </QueryClientProvider>
     </TamaguiProvider>
