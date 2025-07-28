@@ -16,8 +16,6 @@ export function InstagramHeader() {
       paddingHorizontal="$4"
       paddingVertical="$3"
       backgroundColor="$background"
-      borderBottomWidth={0.5}
-      borderBottomColor="$borderColor"
     >
       <TouchableOpacity>
         <Ionicons name="camera-outline" size={28} color={iconColor} />
