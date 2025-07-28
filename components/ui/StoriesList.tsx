@@ -1,5 +1,5 @@
 import { LinearGradient } from "expo-linear-gradient";
-import React from "react";
+import React, { useState } from "react";
 import { ScrollView, TouchableOpacity } from "react-native";
 import Animated, {
   useAnimatedStyle,
@@ -71,6 +71,7 @@ interface StoryItemProps {
 function StoryItem({ story, onPress }: StoryItemProps) {
   const scale = useSharedValue(1);
   const rotation = useSharedValue(0);
+  const [avatarError, setAvatarError] = useState(false);
 
   const animatedStyle = useAnimatedStyle(() => {
     return {
@@ -160,10 +161,15 @@ function StoryItem({ story, onPress }: StoryItemProps) {
             justifyContent="center"
           >
             <Image
-              source={{ uri: story.avatar }}
+              source={{
+                uri: avatarError
+                  ? `https://picsum.photos/60/60?random=${story.id}`
+                  : story.avatar,
+              }}
               width={60}
               height={60}
               borderRadius={30}
+              onError={() => setAvatarError(true)}
             />
           </View>
         </GradientBorder>

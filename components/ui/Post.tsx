@@ -13,7 +13,7 @@ export function Post({ post }: { post: PostType }) {
         name={post.name}
         location={post.location}
       />
-      <PostImage image={post.image} />
+      <PostImage image={post.image} postId={post.id} />
       <PostActions
         likes={post.likes}
         comments={post.comments}
