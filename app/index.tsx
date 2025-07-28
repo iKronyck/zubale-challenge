@@ -1,10 +1,10 @@
 import { MainLayout } from "@/components/layouts/MainLayout";
-import { Post } from "@/components/ui/Post";
+import { PostList } from "@/components/ui/PostList";
 
 export default function Home() {
   return (
     <MainLayout>
-      <Post />
+      <PostList />
     </MainLayout>
   );
 }
