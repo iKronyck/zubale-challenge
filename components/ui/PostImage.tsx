@@ -1,11 +1,14 @@
+import { Post } from "@/types";
 import { Image, View } from "tamagui";
 
-export function PostImage() {
+type PostImageProps = Pick<Post, "image">;
+
+export function PostImage({ image }: PostImageProps) {
   return (
     <View>
       <Image
         source={{
-          uri: "https://ciudadcaborojo.com/wp-content/uploads/2023/05/Frame-278-min.jpg",
+          uri: image,
         }}
         w="100%"
         h={375}
