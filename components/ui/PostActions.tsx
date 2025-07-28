@@ -1,16 +1,25 @@
 import { Colors } from "@/constants/Colors";
+import { Post } from "@/types";
 import { formatSocialCount } from "@/utils";
 import { Feather, FontAwesome, Ionicons } from "@expo/vector-icons";
 import { useState } from "react";
 import { useColorScheme } from "react-native";
 import { Button, Text, View } from "tamagui";
 
-export function PostActions() {
-  const [likeCount, setLikeCount] = useState(1200);
-  const [hasLike, setHasLike] = useState(false);
+type PostActionsProps = Pick<Post, "likes" | "comments" | "saved" | "liked">;
+
+export function PostActions({
+  likes,
+  comments,
+  saved,
+  liked,
+}: PostActionsProps) {
+  const [likeCount, setLikeCount] = useState(likes);
+  const [hasLike, setHasLike] = useState(liked);
+  const [hasSaved, setHasSaved] = useState(saved);
+
   const colorScheme = useColorScheme() ?? "light";
-  // const hasLike = true;
-  const hasSaved = true;
+
   const likeColor = hasLike
     ? Colors[colorScheme].likeHeart
     : Colors[colorScheme].textPrimary;
@@ -20,6 +29,8 @@ export function PostActions() {
     setHasLike((prev) => !prev);
     setLikeCount((prev) => (hasLike ? prev - 1 : prev + 1));
   };
+
+  const handleSave = () => setHasSaved((prev) => !prev);
 
   return (
     <View w="$100%" flexDirection="row" justifyContent="space-between">
@@ -42,14 +53,14 @@ export function PostActions() {
             style={{ transform: [{ rotate: "270deg" }] }}
           />
           <Text color="$textPrimary" fontSize={16} fontWeight="600">
-            {formatSocialCount(1234)}
+            {formatSocialCount(comments)}
           </Text>
         </Button>
         <Button p={"$2"}>
           <Feather name="send" size={24} color="white" />
         </Button>
       </View>
-      <Button p={"$2"}>
+      <Button p={"$2"} onPress={handleSave}>
         <FontAwesome
           name={hasSaved ? "bookmark" : "bookmark-o"}
           size={24}
